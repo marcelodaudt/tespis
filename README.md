@@ -1,4 +1,4 @@
-# Sistema Térpis
+# Sistema Téspis
 
 Sistema para Gestão Acadêmica.
 
