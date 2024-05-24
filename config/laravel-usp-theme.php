@@ -25,13 +25,63 @@ $admin = [
 
 $submenu2 = [
     [
-        'text' => 'SubItem 1',
-        'url' => 'subitem1',
+        'text' => 'Departamento',
+        'url' => config('app.url') . '/departamentos/create',
     ],
     [
-        'text' => 'SubItem 2',
-        'url' => 'subitem2',
-        'can' => 'admin',
+        'text' => 'Curso',
+        'url'  => config('app.url') . '/cursos/create',
+    ],
+    [
+        'text' => 'Disciplina',
+        'url'  => config('app.url') . '/disciplinas/create',
+    ],
+    [
+        'text' => 'Turma',
+        'url' => config('app.url') . '/turmas/create',
+    ],
+    [
+        'text' => 'Professor',
+        'url' => config('app.url') . '/docentes/create',
+    ],
+    [
+        'text' => 'Aluno',
+        'url' => config('app.url') . '/alunos/create',
+    ],
+    [
+        'text' => 'Espetáculo',
+        'url' => config('app.url') . '/espetaculos/create',
+    ],
+];
+
+$submenu3 = [
+    [
+        'text' => 'Departamentos',
+        'url'  => config('app.url') . '/departamentos',
+    ],
+    [
+        'text' => 'Cursos',
+        'url'  => config('app.url') . '/cursos',
+    ],
+    [
+        'text' => 'Disciplinas',
+        'url'  => config('app.url') . '/disciplinas',
+    ],
+    [
+        'text' => 'Turmas',
+        'url' => config('app.url') . '/turmas',
+    ],
+    [
+        'text' => 'Professores',
+        'url' => config('app.url') . '/docentes',
+    ],
+    [
+        'text' => 'Alunos',
+        'url' => config('app.url') . '/alunos',
+    ],
+    [
+        'text' => 'Espetáculos',
+        'url' => config('app.url') . '/espetaculos',
     ],
 ];
 
@@ -45,8 +95,13 @@ $menu = [
         'key' => 'menu_dinamico',
     ],
     [
-        'text' => 'Drop Down',
+        'text' => 'Cadastros',
         'submenu' => $submenu2,
+        'can' => '',
+    ],
+    [
+        'text' => 'Consultas',
+        'submenu' => $submenu3,
         'can' => '',
     ],
     [
