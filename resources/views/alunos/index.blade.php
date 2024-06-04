@@ -20,8 +20,8 @@
           <td>{{ $aluno->numero_usp }}</td>
           <td>{{ $aluno->nome }}</td>
           <td>{{ $aluno->sobrenome }}</td>
-          <td><a href="{{ route('alunos.show', $aluno->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
           <td><a href="{{ route('alunos.edit', $aluno->id) }}"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a></td>
+          <td><a href="{{ route('alunos.show', $aluno->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
         </tr>
       @endforeach
     </tbody>

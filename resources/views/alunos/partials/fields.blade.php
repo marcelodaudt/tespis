@@ -14,9 +14,9 @@
     <li><strong>Turma:</strong> {{ $aluno->id_turma ?? '' }}</li>
     <li><strong>Curso:</strong> {{ $aluno->id_curso ?? '' }}</li>
   </ul>
-<p><a href="/alunos/{{ $aluno->id }}/edit"><i class="fas fa-edit" style="font-size:26px;"></i> Editar</a></p>
+<p><a href="/alunos/{{ $aluno->id }}/edit"><i class="fas fa-edit" style="font-size:36px;"></i> Editar</a></p>
+<p><a href="/alunos"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i> Voltar</a></p>
 <p>
-  <button onclick="javascript:history.back()">Voltar</button>
   <form action="/alunos/{{ $aluno->id }}" method="post">
   @csrf
   @method('delete')
