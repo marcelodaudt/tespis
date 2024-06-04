@@ -7,10 +7,13 @@
 <label class="card-title required" for="sobrenome">Sobrenome do Aluno: </label>
 <input type="text" class="form-control" id="sobrenome" name="sobrenome" value="{{$aluno->sobrenome}}">
 
+<label class="card-title required" for="nome_social">Nome Social: </label>
+<input type="text" class="form-control" id="nome_social" name="nome_social" value="{{$aluno->nome_social}}">
+
 <label class="card-title required" for="cpf">CPF: </label>
 <input type="text" class="form-control" id="cpf" name="cpf" value="{{$aluno->cpf}}">
 
-<label class="card-title required" for="status">Status (A ou D): </label>
+<label class="card-title required" for="status">Status: </label>
 <input type="text" class="form-control" id="status" name="status" value="{{$aluno->status}}">
 
 <label class="card-title required" for="sexo">Sexo: </label>
@@ -28,7 +31,13 @@
 <label class="card-title required" for="whatsapp">Whatsapp: </label>
 <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{$aluno->whatsapp}}">
 
-<label class="card-title required" for="status_utilizacao_nome_social">Utilização do Nome Social? (S ou N): </label>
+<label class="card-title required" for="status_utilizacao_nome_social">Utilização do Nome Social? </label>
 <input type="text" class="form-control" id="status_utilizacao_nome_social" name="status_utilizacao_nome_social" value="{{$aluno->status_utilizacao_nome_social}}">
+
+<label class="card-title required" for="id_turma">Turma: </label>
+<input type="text" class="form-control" id="id_turma" name="id_turma" value="{{$aluno->id_turma}}">
+
+<label class="card-title required" for="id_curso">Curso: </label>
+<input type="text" class="form-control" id="id_curso" name="id_curso" value="{{$aluno->id_curso}}">
 
 <button type="submit">Salvar</button>

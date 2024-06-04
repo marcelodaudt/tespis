@@ -18,6 +18,7 @@ class CreateAlunosTable extends Migration
             $table->integer('numero_usp');
             $table->string('nome');
             $table->string('sobrenome');
+            $table->string('nome_social');
             $table->string('cpf');
             $table->string('status');
             $table->string('sexo');
@@ -27,10 +28,10 @@ class CreateAlunosTable extends Migration
             $table->string('whatsapp');
             $table->string('status_utilizacao_nome_social');
             $table->timestamps();
-            //$table->integer('id_turma');
+            $table->integer('id_turma');
             //$table->foreign('id_turma')->references('id')->on('turmas')->onDelete('set null');
-            //$table->integer('id_curso');
-            //$table->foreign('id_curso')->references('id')->on('cursos')->onDelete('set null');
+            $table->integer('id_curso');
+            //$table->foreign('id_curso')->references('id')->on('cursos');
         });
     }
 

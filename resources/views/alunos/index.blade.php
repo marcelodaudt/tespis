@@ -2,6 +2,9 @@
 
 @section('content')
   <h2>Alunos Cadastrados</h2>
+
+  {{$alunos->appends(request()->query())->links()}}
+  
   <table class="table table-striped">
     <thead>
       <tr>
@@ -17,20 +20,17 @@
           <td>{{ $aluno->numero_usp }}</td>
           <td>{{ $aluno->nome }}</td>
           <td>{{ $aluno->sobrenome }}</td>
-          <td><a href="{{ route('alunos.show', $aluno->id) }}">Exibir</a></td>
-          <td><a href="{{ route('alunos.edit', $aluno->id) }}">Editar</a></td>
+          <td><a href="{{ route('alunos.show', $aluno->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
+          <td><a href="{{ route('alunos.edit', $aluno->id) }}"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a></td>
         </tr>
       @endforeach
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="5">Total de Alunos Cadastrados: {{ $alunos->count() }}</td>
-      </tr>
-    </tfoot>
   </table>
+
   @if(isset($msg))
     <script>
       alert("{{$msg}}");
     </script>
   @endif
+
 @endsection

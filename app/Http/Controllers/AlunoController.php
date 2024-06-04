@@ -17,10 +17,12 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        $alunos =  Aluno::all();
-        return view('alunos.index',[
-            'alunos' => $alunos
-        ]);
+        //$alunos = Aluno::all();
+        $alunos = Aluno::orderBy('nome')->paginate(15);
+        //return view('alunos.index',[
+        //    'alunos' => $alunos
+        //]);
+        return view('alunos.index')->with('alunos',$alunos);
     }
 
     /**
@@ -48,6 +50,7 @@ class AlunoController extends Controller
         $aluno->numero_usp = $request->numero_usp;
         $aluno->nome = $request->nome;
         $aluno->sobrenome = $request->sobrenome;
+        $aluno->nome_social = $request->nome_social;
         $aluno->cpf = $request->cpf;
         $aluno->status = $request->status;
         $aluno->sexo = $request->sexo;
@@ -56,6 +59,8 @@ class AlunoController extends Controller
         $aluno->email = $request->email;
         $aluno->whatsapp = $request->whatsapp;
         $aluno->status_utilizacao_nome_social = $request->status_utilizacao_nome_social;
+        $aluno->id_turma = $request->id_turma;
+        $aluno->id_curso = $request->id_curso;
         $aluno->save();
         return redirect("/alunos/{$aluno->id}");
     }
@@ -99,6 +104,7 @@ class AlunoController extends Controller
         $aluno->numero_usp = $request->numero_usp;
         $aluno->nome = $request->nome;
         $aluno->sobrenome = $request->sobrenome;
+        $aluno->nome_social = $request->nome_social;
         $aluno->cpf = $request->cpf;
         $aluno->status = $request->status;
         $aluno->sexo = $request->sexo;
@@ -107,6 +113,8 @@ class AlunoController extends Controller
         $aluno->email = $request->email;
         $aluno->whatsapp = $request->whatsapp;
         $aluno->status_utilizacao_nome_social = $request->status_utilizacao_nome_social;
+        $aluno->id_turma = $request->id_turma;
+        $aluno->id_curso = $request->id_curso;
         $aluno->save();
         return redirect("/alunos/{$aluno->id}");
     }
