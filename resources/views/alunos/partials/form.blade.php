@@ -14,7 +14,20 @@
 <input type="text" class="form-control" id="cpf" name="cpf" value="{{$aluno->cpf}}">
 
 <label class="card-title required" for="status">Status: </label>
-<input type="text" class="form-control" id="status" name="status" value="{{$aluno->status}}">
+<select name="status" class="form-control" id="status">
+    <option value="" selected="">--- Selecione ---</option>
+        @foreach ($aluno->situacaoOptions() as $option)
+            @if (old('status') == '' and isset($aluno->status) )
+                <option value="{{$option}}" {{ ( $aluno->status == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+            @else
+                <option value="{{$option}}" {{ ( old('status') == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+            @endif
+        @endforeach
+</select>
 
 <label class="card-title required" for="sexo">Sexo: </label>
 <input type="text" class="form-control" id="sexo" name="sexo" value="{{$aluno->sexo}}">
@@ -32,12 +45,30 @@
 <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{$aluno->whatsapp}}">
 
 <label class="card-title required" for="status_utilizacao_nome_social">Utilização do Nome Social? </label>
-<input type="text" class="form-control" id="status_utilizacao_nome_social" name="status_utilizacao_nome_social" value="{{$aluno->status_utilizacao_nome_social}}">
+<select name="status_utilizacao_nome_social" class="form-control" id="status_utilizacao_nome_social">
+    <option value="" selected="">--- Selecione ---</option>
+        @foreach ($aluno->statusUtilizacaoNomeSocialOptions() as $option)
+            @if (old('status_utilizacao_nome_social') == '' and isset($aluno->status_utilizacao_nome_social) )
+                <option value="{{$option}}" {{ ( $aluno->status_utilizacao_nome_social == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+            @else
+                <option value="{{$option}}" {{ ( old('status_utilizacao_nome_social') == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+            @endif
+        @endforeach
+</select>
 
 <label class="card-title required" for="id_turma">Turma: </label>
 <input type="text" class="form-control" id="id_turma" name="id_turma" value="{{$aluno->id_turma}}">
 
 <label class="card-title required" for="id_curso">Curso: </label>
-<input type="text" class="form-control" id="id_curso" name="id_curso" value="{{$aluno->id_curso}}">
+<select name="id_curso" class="form-control">
+    <option value="" selected="">--- Selecione ---</option>
+        @foreach($cursos as $curso)
+            <option value="{{ $curso->id }}" <?php if($aluno->id_curso == $curso->id) { echo "selected";}?>>{{ $curso->nome_curso }}</option>
+        @endforeach                 
+</select>
 
 <button type="submit">Salvar</button>

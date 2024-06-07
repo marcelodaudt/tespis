@@ -12,7 +12,11 @@
     <li><strong>Whatsapp:</strong> {{ $aluno->whatsapp ?? '' }}</li>
     <li><strong>Utilização do Nome Social?</strong> {{ $aluno->status_utilizacao_nome_social ?? '' }}</li>
     <li><strong>Turma:</strong> {{ $aluno->id_turma ?? '' }}</li>
-    <li><strong>Curso:</strong> {{ $aluno->id_curso ?? '' }}</li>
+    <li><strong>Curso:</strong>
+      @foreach($cursos as $curso)
+        <?php if($aluno->id_curso == $curso->id) { echo $curso->nome_curso;}?>
+      @endforeach   
+    </li>
   </ul>
 <p><a href="/alunos/{{ $aluno->id }}/edit"><i class="fas fa-edit" style="font-size:36px;"></i> Editar</a></p>
 <p><a href="/alunos"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i> Voltar</a></p>

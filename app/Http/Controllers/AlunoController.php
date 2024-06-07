@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 //use App\Http\Requests\StoreAlunoRequest;
 //use App\Http\Requests\UpdateAlunoRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use App\Models\Aluno;
+use App\Models\Curso;
 
 class AlunoController extends Controller
 {
@@ -17,11 +19,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //$alunos = Aluno::all();
         $alunos = Aluno::orderBy('nome')->paginate(15);
-        //return view('alunos.index',[
-        //    'alunos' => $alunos
-        //]);
         return view('alunos.index')->with('alunos',$alunos);
     }
 
@@ -32,9 +30,11 @@ class AlunoController extends Controller
      */
     public function create()
     {
+        $cursos = Curso::with('alunos')->get();
+
         return view('alunos.create', [
-            'aluno' => new Aluno
-        ]);
+            'aluno' => new Aluno,
+        ])->with('cursos',$cursos);
     }
 
     /**
@@ -73,9 +73,11 @@ class AlunoController extends Controller
      */
     public function show(Aluno $aluno)
     {
+        $cursos = Curso::with('alunos')->get();
+
         return view('alunos.show',[
             'aluno' => $aluno
-        ]);
+        ])->with('cursos',$cursos);
     }
 
     /**
@@ -86,9 +88,11 @@ class AlunoController extends Controller
      */
     public function edit(Aluno $aluno)
     {
+        $cursos = Curso::with('alunos')->get();
+
         return view('alunos.edit', [
             'aluno' => $aluno
-        ]);
+        ])->with('cursos',$cursos);
     }
 
     /**
