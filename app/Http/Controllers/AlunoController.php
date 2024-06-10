@@ -17,9 +17,22 @@ class AlunoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $alunos = Aluno::orderBy('nome')->paginate(15);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $alunos = Aluno::where('numero_usp','LIKE',"%{$request->busca}%")
+            ->orWhere('nome','LIKE',"%{$request->busca}%")
+            ->where('status', $request->buscastatus)->orderBy('nome')->paginate(15);
+            
+        } else if(isset($request->busca)) {
+            $alunos = Aluno::where('numero_usp','LIKE',"%{$request->busca}%")
+            ->orWhere('nome','LIKE',"%{$request->busca}%")->orderBy('nome')->paginate(15);
+        } else {
+            $alunos = Aluno::orderBy('nome')->paginate(15);
+        }
+        
+        //$alunos = Aluno::orderBy('nome')->paginate(15);
         return view('alunos.index')->with('alunos',$alunos);
     }
 

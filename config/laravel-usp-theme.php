@@ -166,6 +166,6 @@ return [
     'mensagensFlash' => false,
 
     # container ou container-fluid
-    'container' => 'container-fluid',
+    'container' => 'container',
 
 ];

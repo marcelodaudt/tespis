@@ -3,8 +3,20 @@
 @section('content')
   <h2>Alunos Cadastrados</h2>
 
-  {{$alunos->appends(request()->query())->links()}}
-  
+  <form method="get" action="{{ $app_url }}/alunos">
+    <div class="row">
+      <div class=" col-sm input-group">
+        <input type="text" class="form-control" name="busca" value="{{Request()->busca}}" placeholder="Busca por número USP ou nome do/a aluno/a">  
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-success"> Buscar </button>
+        </span>
+      </div>
+    </div>
+  </form>
+
+  <br>
+  <p><a href="/alunos/create" class="btn btn-success"> Novo/a aluno/a </a></p>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -26,6 +38,8 @@
       @endforeach
     </tbody>
   </table>
+
+  <p>{{$alunos->appends(request()->query())->links()}}</p>
 
   @if(isset($msg))
     <script>
