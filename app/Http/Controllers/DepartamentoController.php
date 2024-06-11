@@ -15,12 +15,21 @@ class DepartamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $departamentos =  Departamento::all();
-        return view('departamentos.index',[
-            'departamentos' => $departamentos
-        ]);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $departamentos = Departamento::where('nome_departamento','LIKE',"%{$request->busca}%")
+            ->orWhere('nome','LIKE',"%{$request->busca}%")
+            ->where('status', $request->buscastatus)->orderBy('nome_departamento')->paginate(10);
+        } else if(isset($request->busca)) {
+            $departamentos = Departamento::where('nome_departamento','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_departamento')->paginate(10);
+        } else {
+            $departamentos = Departamento::orderBy('nome_departamento')->paginate(10);
+        }
+        
+        return view('departamentos.index')->with('departamentos',$departamentos);
     }
 
     /**
