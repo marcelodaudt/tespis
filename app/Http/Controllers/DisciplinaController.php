@@ -15,12 +15,20 @@ class DisciplinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $disciplinas =  Disciplina::all();
-        return view('disciplinas.index',[
-            'disciplinas' => $disciplinas
-        ]);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $disciplinas = Disciplina::where('nome_disciplina','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_disciplina')->paginate(10);
+        } else if(isset($request->busca)) {
+            $disciplinas = Disciplina::where('nome_disciplina','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_disciplina')->paginate(10);
+        } else {
+            $disciplinas = Disciplina::orderBy('nome_disciplina')->paginate(10);
+        }
+        
+        return view('disciplinas.index')->with('disciplinas',$disciplinas);
     }
 
     /**
