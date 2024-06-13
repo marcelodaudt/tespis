@@ -15,7 +15,7 @@
   </form>
 
   <br>
-  <p><a href="/alunos/create" class="btn btn-success"> Novo/a aluno/a </a></p>
+  <p><a href="/alunos/create" class="btn btn-success"> Novo(a) aluno(a) </a></p>
 
   <table class="table table-striped">
     <thead>

@@ -14,7 +14,6 @@
     </div>
   </form>
 
-
   <br>
   <p><a href="/turmas/create" class="btn btn-success"> Nova turma </a></p>
 

@@ -15,12 +15,22 @@ class DocenteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $docentes =  Docente::all();
-        return view('docentes.index',[
-            'docentes' => $docentes
-        ]);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $docentes = Docente::where('nome_docente','LIKE',"%{$request->busca}%")
+            ->orWhere('sobrenome_docente','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_docente')->paginate(10);
+        } else if(isset($request->busca)) {
+            $docentes = Docente::where('nome_docente','LIKE',"%{$request->busca}%")
+            ->orWhere('sobrenome_docente','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_docente')->paginate(10);
+        } else {
+            $docentes = Docente::orderBy('nome_docente')->paginate(10);
+        }
+        
+        return view('docentes.index')->with('docentes',$docentes);
     }
 
     /**

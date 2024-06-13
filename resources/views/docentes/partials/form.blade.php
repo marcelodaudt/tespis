@@ -4,7 +4,7 @@
 <label class="card-title required" for="sobrenome_docente">Sobrenome do Professor: </label>
 <input type="text" class="form-control" id="sobrenome_docente" name="sobrenome_docente" value="{{$docente->sobrenome_docente}}">
 
-<label class="card-title required" for="status">Status (A ou D): </label>
+<label class="card-title required" for="status">Situação: </label>
 <input type="text" class="form-control" id="status" name="status" value="{{$docente->status}}">
 
 <label class="card-title required" for="id_departamento">Departamento: </label>

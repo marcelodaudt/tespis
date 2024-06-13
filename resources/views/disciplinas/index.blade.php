@@ -16,7 +16,7 @@
 
 
   <br>
-  <p><a href="/disciplinas/create" class="btn btn-success"> Novo disciplina </a></p>
+  <p><a href="/disciplinas/create" class="btn btn-success"> Nova disciplina </a></p>
 
   <table class="table table-striped">
     <thead>
