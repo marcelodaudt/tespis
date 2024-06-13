@@ -18,13 +18,11 @@ class EspetaculoController extends Controller
     public function index(Request $request)
     {
         if ($request->buscastatus != null && $request->busca != null){
-
-            $espetaculos = DepartEspetaculoamento::where('nome_departamento','LIKE',"%{$request->busca}%")
-            ->orWhere('nome_espetaculo','LIKE',"%{$request->busca}%")
-            ->where('status', $request->buscastatus)->orderBy('nome_espetaculo')->paginate(15);
+            $espetaculos = Espetaculo::where('nome_departamento','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_espetaculo')->paginate(15);
         } else if(isset($request->busca)) {
             $espetaculos = Espetaculo::where('nome_espetaculo','LIKE',"%{$request->busca}%")
-            ->orderBy('nome_espetaculo')->paginate(10);
+            ->orderBy('nome_espetaculo')->paginate(15);
         } else {
             $espetaculos = Espetaculo::orderBy('nome_espetaculo')->paginate(15);
         }

@@ -12,12 +12,20 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cursos =  Curso::all();
-        return view('cursos.index',[
-            'cursos' => $cursos
-        ]);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $cursos = Curso::where('nome_curso','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_curso')->paginate(5);
+        } else if(isset($request->busca)) {
+            $cursos = Curso::where('nome_curso','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_curso')->paginate(5);
+        } else {
+            $cursos = Curso::orderBy('nome_curso')->paginate(5);
+        }
+        
+        return view('cursos.index')->with('cursos',$cursos);
     }
 
     /**

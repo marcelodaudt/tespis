@@ -36,11 +36,6 @@
         </tr>
       @endforeach
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="5">Total de Espetáculos Cadastrados: {{ $espetaculos->count() }}</td>
-      </tr>
-    </tfoot>
   </table>
 
   <p>{{$espetaculos->appends(request()->query())->links()}}</p>
