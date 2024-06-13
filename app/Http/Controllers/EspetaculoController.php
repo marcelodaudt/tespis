@@ -15,12 +15,21 @@ class EspetaculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $espetaculos = Espetaculo::all();
-        return view('espetaculos.index', [
-            'espetaculos' => $espetaculos
-        ]);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $espetaculos = DepartEspetaculoamento::where('nome_departamento','LIKE',"%{$request->busca}%")
+            ->orWhere('nome_espetaculo','LIKE',"%{$request->busca}%")
+            ->where('status', $request->buscastatus)->orderBy('nome_espetaculo')->paginate(15);
+        } else if(isset($request->busca)) {
+            $espetaculos = Espetaculo::where('nome_espetaculo','LIKE',"%{$request->busca}%")
+            ->orderBy('nome_espetaculo')->paginate(10);
+        } else {
+            $espetaculos = Espetaculo::orderBy('nome_espetaculo')->paginate(15);
+        }
+        
+        return view('espetaculos.index')->with('espetaculos',$espetaculos);
     }
 
     /**
