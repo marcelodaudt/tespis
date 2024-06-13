@@ -4,10 +4,13 @@
 <label class="card-title required" for="ano">Ano da Apresentação: </label>
 <input type="text" class="form-control" id="ano" name="ano" value="{{$espetaculo->ano}}">
 
-<label class="card-title required" for="tempo">Tempo (duração): </label>
-<input type="text" class="form-control" id="tempo" name="tempo" value="{{$espetaculo->tempo}}">
+<label class="card-title required" for="termo">Termo: </label>
+<input type="text" class="form-control" id="termo" name="termo" value="{{$espetaculo->termo}}">
 
-<label class="card-title required" for="tipo">Tipo: </label>
-<input type="text" class="form-control" id="tipo" name="tipo" value="{{$espetaculo->tipo}}">
+<label class="card-title required" for="turma">Turma: </label>
+<input type="text" class="form-control" id="turma" name="turma" value="{{$espetaculo->turma}}">
+
+<label class="card-title required" for="categoria">Categoria: </label>
+<input type="text" class="form-control" id="categoria" name="ticategoriapo" value="{{$espetaculo->categoria}}">
 
 <button type="submit">Salvar</button>

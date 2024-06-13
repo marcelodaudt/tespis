@@ -47,8 +47,9 @@ class EspetaculoController extends Controller
         $espetaculo = new Espetaculo;
         $espetaculo->nome_espetaculo = $request->nome_espetaculo;
         $espetaculo->ano = $request->ano;
-        $espetaculo->tempo = $request->tempo;
-        $espetaculo->tipo = $request->tipo;
+        $espetaculo->termo = $request->termo;
+        $espetaculo->turma = $request->turma;
+        $espetaculo->categoria = $request->categoria;
         $espetaculo->save();
         return redirect("/espetaculos/{$espetaculo->id}");
     }
@@ -91,8 +92,9 @@ class EspetaculoController extends Controller
     {
         $espetaculo->nome_espetaculo = $request->nome_espetaculo;
         $espetaculo->ano = $request->ano;
-        $espetaculo->tempo = $request->tempo;
-        $espetaculo->tipo = $request->tipo;
+        $espetaculo->termo = $request->termo;
+        $espetaculo->turma = $request->turma;
+        $espetaculo->categoria = $request->categoria;
         $espetaculo->save();
         return redirect("/espetaculos/{$espetaculo->id}");
     }
