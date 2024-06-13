@@ -5,7 +5,6 @@
     <li><strong>Carga horária:</strong> {{ $disciplina->carga_horaria ?? '' }}</li>
     <li><strong>Número de alunos (vagas):</strong> {{ $disciplina->numero_alunos ?? '' }}</li>
   </ul>
-
 <p><a href="/disciplinas/{{ $disciplina->id }}/edit"><i class="fas fa-edit" style="font-size:36px;"></i> Editar</a></p>
 <p><a href="/disciplinas"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i> Voltar</a></p>
 <p>

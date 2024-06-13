@@ -1,3 +1,6 @@
+<label class="card-title required" for="numero_turma">Número da turma: </label>
+<input type="text" class="form-control" id="numero_turma" name="numero_turma" value="{{$turma->numero_turma}}">
+
 <label class="card-title required" for="id_curso">Código do curso: </label>
 <input type="text" class="form-control" id="id_curso" name="id_curso" value="{{$turma->id_curso}}">
 

@@ -15,12 +15,20 @@ class TurmaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $turmas =  Turma::all();
-        return view('turmas.index',[
-            'turmas' => $turmas
-        ]);
+        if ($request->buscastatus != null && $request->busca != null){
+
+            $turmas = Turma::where('numero_turma','LIKE',"%{$request->busca}%")
+            ->orderBy('numero_turma')->paginate(10);
+        } else if(isset($request->busca)) {
+            $turmas = Turma::where('numero_turma','LIKE',"%{$request->busca}%")
+            ->orderBy('numero_turma')->paginate(10);
+        } else {
+            $turmas = Turma::orderBy('numero_turma')->paginate(10);
+        }
+        
+        return view('turmas.index')->with('turmas',$turmas);
     }
 
     /**
@@ -45,6 +53,7 @@ class TurmaController extends Controller
     public function store(Request $request)
     {
         $turma = new Turma;
+        $turma->numero_turma = $request->numero_turma;
         $turma->id_curso = $request->id_curso;
         $turma->periodo = $request->periodo;
         $turma->numero_alunos = $request->numero_alunos;
@@ -90,6 +99,7 @@ class TurmaController extends Controller
     //public function update(UpdateTurmaRequest $request, Turma $turma)
     public function update(Request $request, Turma $turma)
     {
+        $turma->numero_turma = $request->numero_turma;
         $turma->id_curso = $request->id_curso;
         $turma->periodo = $request->periodo;
         $turma->numero_alunos = $request->numero_alunos;
