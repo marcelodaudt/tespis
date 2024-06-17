@@ -23,10 +23,13 @@ class AlunoController extends Controller
         if ($request->buscastatus != null && $request->busca != null){
             $alunos = Aluno::where('numero_usp','LIKE',"%{$request->busca}%")
             ->orWhere('nome','LIKE',"%{$request->busca}%")
+            ->orWhere('sobrenome','LIKE',"%{$request->busca}%")
             ->orderBy('nome')->paginate(15);
         } else if(isset($request->busca)) {
             $alunos = Aluno::where('numero_usp','LIKE',"%{$request->busca}%")
-            ->orWhere('nome','LIKE',"%{$request->busca}%")->orderBy('nome')->paginate(15);
+            ->orWhere('nome','LIKE',"%{$request->busca}%")
+            ->orWhere('sobrenome','LIKE',"%{$request->busca}%")
+            ->orderBy('nome')->paginate(15);
         } else {
             $alunos = Aluno::orderBy('nome')->paginate(15);
         }

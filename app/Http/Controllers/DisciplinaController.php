@@ -28,8 +28,6 @@ class DisciplinaController extends Controller
         } else {
             $disciplinas = Disciplina::orderBy('nome_disciplina')->paginate(10);
         }
-        
-        //return view('disciplinas.index')->with('disciplinas',$disciplinas);
 
         $departamentos = Departamento::with('disciplinas')->get();
 
