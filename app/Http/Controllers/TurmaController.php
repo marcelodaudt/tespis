@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Turma;
+use App\Models\Curso;
 
 class TurmaController extends Controller
 {
@@ -38,8 +39,11 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        return view('turmas.create', [
-            'turma' => new Turma
+        $cursos = Curso::with('turmas')->get();
+
+        return view('turmas.create')->with([
+            'turma' => new Turma,
+            'cursos' => $cursos
         ]);
     }
 
@@ -71,8 +75,11 @@ class TurmaController extends Controller
      */
     public function show(Turma $turma)
     {
-        return view('turmas.show',[
-            'turma' => $turma
+        $cursos = Curso::with('turmas')->get();
+        
+        return view('turmas.show')->with([
+            'turma' => $turma,
+            'cursos' => $cursos
         ]);
     }
 
@@ -84,8 +91,11 @@ class TurmaController extends Controller
      */
     public function edit(Turma $turma)
     {
-        return view('turmas.edit', [
-            'turma' => $turma
+        $cursos = Curso::with('turmas')->get();
+        
+        return view('turmas.edit')->with([
+            'turma' => $turma,
+            'cursos' => $cursos
         ]);
     }
 

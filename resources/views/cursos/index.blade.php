@@ -30,7 +30,11 @@
       @foreach ($cursos as $curso)
         <tr>
           <td>{{ $curso->nome_curso }}</td>
-          <td>{{ $curso->id_departamento }}</td>
+          <td>
+            @foreach($departamentos as $departamento)
+              <?php if($curso->id_departamento == $departamento->id) { echo $departamento->nome_departamento;}?>
+            @endforeach 
+          </td>
           <td><a href="{{ route('cursos.edit', $curso->id) }}"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a></td>
           <td><a href="{{ route('cursos.show', $curso->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
         </tr>

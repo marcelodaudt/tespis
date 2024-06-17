@@ -19,6 +19,7 @@ class Aluno extends Model
 
     public function situacaoOptions(){
         return [
+            'Ingressante',
             'Matriculado',
             'Trancado',
             'Formado',
@@ -32,5 +33,9 @@ class Aluno extends Model
      */
 	public function cursos(): BelongsTo {
 		return $this->belongsTo(Curso::class, 'id_curso', 'id');
+	}
+
+    public function turmas(): BelongsTo {
+		return $this->belongsTo(Turma::class, 'id_turma', 'id');
 	}
 }

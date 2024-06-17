@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Docente;
+use App\Models\Departamento;
 
 class DocenteController extends Controller
 {
@@ -18,7 +19,6 @@ class DocenteController extends Controller
     public function index(Request $request)
     {
         if ($request->buscastatus != null && $request->busca != null){
-
             $docentes = Docente::where('nome_docente','LIKE',"%{$request->busca}%")
             ->orWhere('sobrenome_docente','LIKE',"%{$request->busca}%")
             ->orderBy('nome_docente')->paginate(10);
@@ -30,7 +30,12 @@ class DocenteController extends Controller
             $docentes = Docente::orderBy('nome_docente')->paginate(10);
         }
         
-        return view('docentes.index')->with('docentes',$docentes);
+        $departamentos = Departamento::with('docentes')->get();
+
+        return view('docentes.index')->with([
+            'docentes' => $docentes,
+            'departamentos' => $departamentos
+        ]);
     }
 
     /**
@@ -40,8 +45,11 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        return view('docentes.create', [
-            'docente' => new Docente
+        $departamentos = Departamento::with('docentes')->get();
+
+        return view('docentes.create')->with([
+            'docente' => new Docente,
+            'departamentos' => $departamentos
         ]);
     }
 
@@ -71,8 +79,11 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
-        return view('docentes.show',[
-            'docente' => $docente
+        $departamentos = Departamento::with('docentes')->get();
+        
+        return view('docentes.show')->with([
+            'docente' => $docente,
+            'departamentos' => $departamentos
         ]);
     }
 
@@ -84,8 +95,11 @@ class DocenteController extends Controller
      */
     public function edit(Docente $docente)
     {
-        return view('docentes.edit',[
-            'docente' => $docente
+        $departamentos = Departamento::with('docentes')->get();
+        
+        return view('docentes.edit')->with([
+            'docente' => $docente,
+            'departamentos' => $departamentos
         ]);
     }
 

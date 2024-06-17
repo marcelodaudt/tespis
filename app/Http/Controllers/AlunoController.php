@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Aluno;
 use App\Models\Curso;
+use App\Models\Turma;
 
 class AlunoController extends Controller
 {
@@ -41,10 +42,13 @@ class AlunoController extends Controller
     public function create()
     {
         $cursos = Curso::with('alunos')->get();
+        $turmas = Turma::with('alunos')->get();
 
-        return view('alunos.create', [
+        return view('alunos.create')->with([
             'aluno' => new Aluno,
-        ])->with('cursos',$cursos);
+            'turmas' => $turmas,    
+            'cursos' => $cursos
+        ]);
     }
 
     /**
@@ -84,10 +88,13 @@ class AlunoController extends Controller
     public function show(Aluno $aluno)
     {
         $cursos = Curso::with('alunos')->get();
+        $turmas = Turma::with('alunos')->get();
 
-        return view('alunos.show',[
-            'aluno' => $aluno
-        ])->with('cursos',$cursos);
+        return view('alunos.show')->with([
+            'aluno' => $aluno,
+            'turmas' => $turmas,
+            'cursos' => $cursos
+        ]);
     }
 
     /**
@@ -99,10 +106,13 @@ class AlunoController extends Controller
     public function edit(Aluno $aluno)
     {
         $cursos = Curso::with('alunos')->get();
+        $turmas = Turma::with('alunos')->get();
 
-        return view('alunos.edit', [
-            'aluno' => $aluno
-        ])->with('cursos',$cursos);
+        return view('alunos.edit')->with([
+            'aluno' => $aluno,
+            'cursos' => $cursos,
+            'turmas' => $turmas
+        ]);
     }
 
     /**

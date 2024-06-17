@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Disciplina;
+use App\Models\Departamento;
 
 class DisciplinaController extends Controller
 {
@@ -28,7 +29,14 @@ class DisciplinaController extends Controller
             $disciplinas = Disciplina::orderBy('nome_disciplina')->paginate(10);
         }
         
-        return view('disciplinas.index')->with('disciplinas',$disciplinas);
+        //return view('disciplinas.index')->with('disciplinas',$disciplinas);
+
+        $departamentos = Departamento::with('disciplinas')->get();
+
+        return view('disciplinas.index')->with([
+            'disciplinas' => $disciplinas,
+            'departamentos' => $departamentos
+        ]);
     }
 
     /**
@@ -38,8 +46,11 @@ class DisciplinaController extends Controller
      */
     public function create()
     {
-        return view('disciplinas.create', [
-            'disciplina' => new Disciplina
+        $departamentos = Departamento::with('disciplinas')->get();
+
+        return view('disciplinas.create')->with([
+            'disciplina' => new Disciplina,
+            'departamentos' => $departamentos
         ]);
     }
 
@@ -70,8 +81,11 @@ class DisciplinaController extends Controller
      */
     public function show(Disciplina $disciplina)
     {
-        return view('disciplinas.show',[
-            'disciplina' => $disciplina
+        $departamentos = Departamento::with('disciplinas')->get();
+
+        return view('disciplinas.show')->with([
+            'disciplina' => $disciplina,
+            'departamentos' => $departamentos
         ]);
     }
 
@@ -83,8 +97,11 @@ class DisciplinaController extends Controller
      */
     public function edit(Disciplina $disciplina)
     {
-        return view('disciplinas.edit',[
-            'disciplina' => $disciplina
+        $departamentos = Departamento::with('disciplinas')->get();
+
+        return view('disciplinas.edit')->with([
+            'disciplina' => $disciplina,
+            'departamentos' => $departamentos
         ]);
     }
 

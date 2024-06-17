@@ -1,6 +1,10 @@
 <ul>
     <li><strong>Número da Turma:</strong> {{ $turma->numero_turma ?? '' }}</li>  
-    <li><strong>Curso:</strong> {{ $turma->id_curso ?? '' }}</li>
+    <li><strong>Curso:</strong>
+      @foreach($cursos as $curso)
+        <?php if($turma->id_curso == $curso->id) { echo $curso->nome_curso;}?>
+      @endforeach   
+    </li>
     <li><strong>Período:</strong> {{ $turma->periodo ?? '' }}</li>
     <li><strong>Número de alunos:</strong> {{ $turma->numero_alunos ?? '' }}</li>
     <li><strong>Data de início:</strong> {{ $turma->data_inicio ?? '' }}</li>

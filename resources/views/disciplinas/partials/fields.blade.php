@@ -1,7 +1,11 @@
 <ul>
     <li><strong>Nome da Disciplina:</strong> {{ $disciplina->nome_disciplina ?? '' }}</li>
     <li><strong>Descrição:</strong> {{ $disciplina->descricao ?? '' }}</li>
-    <li><strong>Departamento:</strong> {{ $disciplina->id_departamento ?? '' }}</li>
+    <li><strong>Depertamento:</strong>
+      @foreach($departamentos as $departamento)
+        <?php if($disciplina->id_departamento == $departamento->id) { echo $departamento->nome_departamento;}?>
+      @endforeach   
+    </li>
     <li><strong>Carga horária:</strong> {{ $disciplina->carga_horaria ?? '' }}</li>
     <li><strong>Número de alunos (vagas):</strong> {{ $disciplina->numero_alunos ?? '' }}</li>
   </ul>

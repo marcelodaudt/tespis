@@ -32,7 +32,11 @@
         <tr>
           <td>{{ $disciplina->nome_disciplina }}</td>
           <td>{{ $disciplina->descricao }}</td>
-          <td>{{ $disciplina->id_departamento }}</td>
+          <td>
+            @foreach($departamentos as $departamento)
+              <?php if($disciplina->id_departamento == $departamento->id) { echo $departamento->nome_departamento;}?>
+            @endforeach
+          </td>
           <td><a href="{{ route('disciplinas.edit', $disciplina->id) }}"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a></td>
           <td><a href="{{ route('disciplinas.show', $disciplina->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
         </tr>

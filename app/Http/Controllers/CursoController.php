@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\Departamento;
 
 class CursoController extends Controller
 {
@@ -25,7 +26,12 @@ class CursoController extends Controller
             $cursos = Curso::orderBy('nome_curso')->paginate(5);
         }
         
-        return view('cursos.index')->with('cursos',$cursos);
+        $departamentos = Departamento::with('cursos')->get();
+
+        return view('cursos.index')->with([
+            'cursos' => $cursos,
+            'departamentos' => $departamentos
+        ]);
     }
 
     /**
@@ -35,8 +41,11 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('cursos.create', [
-            'curso' => new Curso
+        $departamentos = Departamento::with('cursos')->get();
+
+        return view('cursos.create')->with([
+            'curso' => new Curso,
+            'departamentos' => $departamentos
         ]);
     }
 
@@ -63,8 +72,11 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
-        return view('cursos.show',[
-            'curso' => $curso
+        $departamentos = Departamento::with('cursos')->get();
+
+        return view('cursos.show')->with([
+            'curso' => $curso,
+            'departamentos' => $departamentos
         ]);
     }
 
@@ -76,8 +88,11 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
-        return view('cursos.edit', [
-            'curso' => $curso
+        $departamentos = Departamento::with('cursos')->get();
+
+        return view('cursos.edit')->with([
+            'curso' => $curso,
+            'departamentos' => $departamentos
         ]);
     }
 
