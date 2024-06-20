@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Espetaculo;
+use App\Models\Turma;
 
 class EspetaculoController extends Controller
 {
@@ -27,7 +28,12 @@ class EspetaculoController extends Controller
             $espetaculos = Espetaculo::orderBy('nome_espetaculo')->paginate(15);
         }
         
-        return view('espetaculos.index')->with('espetaculos',$espetaculos);
+        $turmas = Turma::with('espetaculos')->get();
+
+        return view('espetaculos.index')->with([
+            'espetaculos' =>$espetaculos,
+            'turmas' => $turmas
+        ]);
     }
 
     /**
@@ -37,8 +43,11 @@ class EspetaculoController extends Controller
      */
     public function create()
     {
-        return view('espetaculos.create', [
-            'espetaculo' => new Espetaculo
+        $turmas = Turma::with('alunos')->get();
+
+        return view('espetaculos.create')->with([
+            'espetaculo' => new Espetaculo,
+            'turmas' => $turmas
         ]);
     }
 
@@ -55,7 +64,7 @@ class EspetaculoController extends Controller
         $espetaculo->nome_espetaculo = $request->nome_espetaculo;
         $espetaculo->ano = $request->ano;
         $espetaculo->termo = $request->termo;
-        $espetaculo->turma = $request->turma;
+        $espetaculo->id_turma = $request->id_turma;
         $espetaculo->categoria = $request->categoria;
         $espetaculo->save();
         return redirect("/espetaculos/{$espetaculo->id}");
@@ -69,8 +78,11 @@ class EspetaculoController extends Controller
      */
     public function show(Espetaculo $espetaculo)
     {
-        return view('espetaculos.show', [
-            'espetaculo' => $espetaculo
+        $turmas = Turma::with('espetaculos')->get();
+
+        return view('espetaculos.show')->with([
+            'espetaculo' => $espetaculo,
+            'turmas' => $turmas
         ]);
     }
 
@@ -82,8 +94,11 @@ class EspetaculoController extends Controller
      */
     public function edit(Espetaculo $espetaculo)
     {
-        return view('espetaculos.edit', [
-            'espetaculo' => $espetaculo
+        $turmas = Turma::with('espetaculos')->get();
+
+        return view('espetaculos.edit')->with([
+            'espetaculo' => $espetaculo,
+            'turmas' => $turmas
         ]);
     }
 
@@ -100,7 +115,7 @@ class EspetaculoController extends Controller
         $espetaculo->nome_espetaculo = $request->nome_espetaculo;
         $espetaculo->ano = $request->ano;
         $espetaculo->termo = $request->termo;
-        $espetaculo->turma = $request->turma;
+        $espetaculo->id_turma = $request->id_turma;
         $espetaculo->categoria = $request->categoria;
         $espetaculo->save();
         return redirect("/espetaculos/{$espetaculo->id}");

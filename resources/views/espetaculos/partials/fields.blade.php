@@ -2,7 +2,11 @@
     <li><strong>Nome do Espetáculo:</strong> {{ $espetaculo->nome_espetaculo ?? '' }}</li>
     <li><strong>Ano:</strong> {{ $espetaculo->ano ?? '' }}</li>
     <li><strong>Termo:</strong> {{ $espetaculo->termo ?? '' }}</li>
-    <li><strong>Turma:</strong> {{ $espetaculo->turma ?? '' }}</li>
+    <li><strong>Turma:</strong> 
+      @foreach($turmas as $turma)
+        <?php if($espetaculo->id_turma == $turma->id) { echo $turma->numero_turma;}?>
+      @endforeach
+    </li>
     <li><strong>Categoria:</strong> {{ $espetaculo->categoria ?? '' }}</li>
   </ul>
   <p><a href="/espetaculos/{{ $espetaculo->id }}/edit"><i class="fas fa-edit" style="font-size:36px;"></i> Editar</a></p>

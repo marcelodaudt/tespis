@@ -14,13 +14,31 @@
 </p>
 
 <p>
-    <label class="card-title required" for="turma">Turma: </label>
-    <input type="text" class="form-control" id="turma" name="turma" value="{{$espetaculo->turma}}">
+    <label class="card-title required" for="id_turma">Turma: </label>
+    <select name="id_turma" class="form-control">
+        <option value="" selected="">--- Selecione ---</option>
+            @foreach($turmas as $turma)
+                <option value="{{ $turma->id }}" <?php if($espetaculo->id_turma == $turma->id) { echo "selected";}?>>{{ $turma->numero_turma }}</option>
+            @endforeach                 
+    </select>
 </p>
 
 <p>
     <label class="card-title required" for="categoria">Categoria: </label>
-    <input type="text" class="form-control" id="categoria" name="ticategoriapo" value="{{$espetaculo->categoria}}">
+    <select name="categoria" class="form-control" id="categoria">
+        <option value="" selected="">--- Selecione ---</option>
+            @foreach ($espetaculo->categoriaOptions() as $option)
+                @if (old('categoria') == '' and isset($espetaculo->categoria) )
+                    <option value="{{$option}}" {{ ( $espetaculo->categoria == $option) ? 'selected' : ''}}>
+                        {{$option}}
+                    </option>
+                @else
+                    <option value="{{$option}}" {{ ( old('categoria') == $option) ? 'selected' : ''}}>
+                        {{$option}}
+                    </option>
+                @endif
+            @endforeach
+    </select>
 </p>
 
 <p><button type="submit">Salvar</button></p>

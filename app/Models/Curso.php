@@ -15,13 +15,11 @@ class Curso extends Model
     /**
      * @return HasOne
      */
-    public function alunos(): HasOne
-    {
+    public function alunos(): HasOne {
         return $this->hasOne(Aluno::class, 'id_curso', 'id');
     }
 
-    public function turmas(): HasOne
-    {
+    public function turmas(): HasOne {
         return $this->hasOne(Turma::class, 'id_curso', 'id');
     }
 
