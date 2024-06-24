@@ -22,4 +22,20 @@ class Turma extends Model
 	public function espetaculos(): HasOne {
 		return $this->hasOne(Espetaculo::class, 'id_turma', 'id');
 	}
+
+    public function getDataInicioAttribute($value) {
+        return implode('/',array_reverse(explode('-',$value)));
+    }
+
+	public function setDataInicioAttribute($value) {
+        $this->attributes['data_inicio'] = implode('-',array_reverse(explode('/',$value)));
+    }
+
+	public function getDataFinalAttribute($value) {
+        return implode('/',array_reverse(explode('-',$value)));
+    }
+
+    public function setDataFinalAttribute($value) {
+        $this->attributes['data_final'] = implode('-',array_reverse(explode('/',$value)));
+    }
 }

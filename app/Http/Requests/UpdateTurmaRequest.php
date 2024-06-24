@@ -24,7 +24,8 @@ class UpdateTurmaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'data_inicial' => 'required|data',
+            'data_final' => 'required|data',
         ];
     }
 }

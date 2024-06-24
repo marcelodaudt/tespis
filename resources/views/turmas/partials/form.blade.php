@@ -24,13 +24,13 @@
 </p>
 
 <p>
-    <label class="card-title required" for="data_inicio">Data Início (AAAA-MM-DD): </label>
-    <input type="text" class="form-control" id="data_inicio" name="data_inicio" value="{{$turma->data_inicio}}">
+    <label class="card-title required" for="data_inicio">Data Início (DD/MM/AAAA): </label>
+    <input type="text" class="form-control datepicker" id="data_inicio" name="data_inicio" value="{{$turma->data_inicio}}">
 </p>
 
 <p>
-    <label class="card-title required" for="data_final">Data Final (AAAA-MM-DD): </label>
-    <input type="text" class="form-control" id="data_final" name="data_final" value="{{$turma->data_final}}">
+    <label class="card-title required" for="data_final">Data Final (DD/MM/AAAA): </label>
+    <input type="text" class="form-control datepicker" id="data_final" name="data_final" value="{{$turma->data_final}}">
 </p>
 
 <p><button type="submit">Salvar</button></p>
