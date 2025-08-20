@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Docente;
 use App\Models\Departamento;
+use App\Models\Disciplina;
 
 class DocenteController extends Controller
 {
@@ -46,10 +47,12 @@ class DocenteController extends Controller
     public function create()
     {
         $departamentos = Departamento::with('docentes')->get();
+        $disciplinas = Disciplina::all();
 
         return view('docentes.create')->with([
             'docente' => new Docente,
-            'departamentos' => $departamentos
+            'departamentos' => $departamentos,
+            'disciplinas' => $disciplinas
         ]);
     }
 
@@ -67,6 +70,7 @@ class DocenteController extends Controller
         $docente->sobrenome_docente = $request->sobrenome_docente;
         $docente->status = $request->status;
         $docente->id_departamento = $request->id_departamento;
+        $docente->id_disciplina = $request->id_disciplina;
         $docente->save();
         return redirect("/docentes/{$docente->id}");
     }
@@ -80,10 +84,12 @@ class DocenteController extends Controller
     public function show(Docente $docente)
     {
         $departamentos = Departamento::with('docentes')->get();
+        $disciplinas = Disciplina::all();
         
         return view('docentes.show')->with([
             'docente' => $docente,
-            'departamentos' => $departamentos
+            'departamentos' => $departamentos,
+            'disciplinas' => $disciplinas
         ]);
     }
 
@@ -96,10 +102,12 @@ class DocenteController extends Controller
     public function edit(Docente $docente)
     {
         $departamentos = Departamento::with('docentes')->get();
+        $disciplinas = Disciplina::all();
         
         return view('docentes.edit')->with([
             'docente' => $docente,
-            'departamentos' => $departamentos
+            'departamentos' => $departamentos,
+            'disciplinas' => $disciplinas
         ]);
     }
 
@@ -117,6 +125,7 @@ class DocenteController extends Controller
         $docente->sobrenome_docente = $request->sobrenome_docente;
         $docente->status = $request->status;
         $docente->id_departamento = $request->id_departamento;
+        $docente->id_disciplina = $request->id_disciplina;
         $docente->save();
         return redirect("/docentes/{$docente->id}");
     }

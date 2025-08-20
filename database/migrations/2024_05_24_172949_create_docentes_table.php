@@ -18,6 +18,7 @@ class CreateDocentesTable extends Migration
             $table->string('nome_docente');
             $table->string('sobrenome_docente');
             $table->integer('id_departamento');
+            $table->integer('id_disciplina');
             $table->string('status');
             $table->timestamps();
             //$table->foreign('id_departamento')->references('id')->on('departamentos')->onDelete('set null');
