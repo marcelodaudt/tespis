@@ -18,7 +18,7 @@ class CreateEspetaculosTable extends Migration
             $table->string('nome_espetaculo');
             $table->integer('ano');
             $table->integer('termo');
-            $table->integer('turma');
+            $table->integer('id_turma');
             $table->string('categoria');
             $table->timestamps();
         });

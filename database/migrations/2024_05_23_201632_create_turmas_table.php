@@ -15,6 +15,7 @@ class CreateTurmasTable extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->id();
+            $table->integer('numero_turma');
             $table->integer('id_curso');
             $table->string('periodo');
             $table->integer('numero_alunos');

@@ -15,14 +15,24 @@ class Curso extends Model
     /**
      * @return HasOne
      */
+
+    /**
+     * relacionamento com alunos
+     */
     public function alunos(): HasOne {
         return $this->hasOne(Aluno::class, 'id_curso', 'id');
     }
 
+    /**
+     * relacionamento com turmas
+     */
     public function turmas(): HasOne {
         return $this->hasOne(Turma::class, 'id_curso', 'id');
     }
 
+        /**
+     * relacionamento com departamentos
+     */
 	public function departamentos(): BelongsTo {
 		return $this->belongsTo(Departamento::class, 'id_departamento', 'id');
 	}
