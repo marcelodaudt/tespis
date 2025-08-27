@@ -50,7 +50,6 @@ class DocenteDisciplinaController extends Controller
         $docente = Docente::findOrFail($docenteId);
         $docente->disciplinas()->detach($disciplinaId);
         
-        return redirect()->back()
-                     ->with('success', 'Disciplina desvinculada com sucesso!');
+        return redirect()->back();
     }
 }
