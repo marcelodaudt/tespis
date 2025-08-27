@@ -2,4 +2,4 @@
 
 @section('content')
   @include('docentes.partials.fields')
-@endsection  
+@endsection

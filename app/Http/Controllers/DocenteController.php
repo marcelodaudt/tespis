@@ -70,7 +70,6 @@ class DocenteController extends Controller
         $docente->sobrenome_docente = $request->sobrenome_docente;
         $docente->status = $request->status;
         $docente->id_departamento = $request->id_departamento;
-        $docente->id_disciplina = $request->id_disciplina;
         $docente->save();
         return redirect("/docentes/{$docente->id}");
     }
@@ -125,7 +124,6 @@ class DocenteController extends Controller
         $docente->sobrenome_docente = $request->sobrenome_docente;
         $docente->status = $request->status;
         $docente->id_departamento = $request->id_departamento;
-        $docente->id_disciplina = $request->id_disciplina;
         $docente->save();
         return redirect("/docentes/{$docente->id}");
     }

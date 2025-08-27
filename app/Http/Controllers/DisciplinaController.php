@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Disciplina;
 use App\Models\Departamento;
+use App\Models\Docente;
 
 class DisciplinaController extends Controller
 {
@@ -80,10 +81,12 @@ class DisciplinaController extends Controller
     public function show(Disciplina $disciplina)
     {
         $departamentos = Departamento::with('disciplinas')->get();
+        $docentes = Docente::all();
 
         return view('disciplinas.show')->with([
             'disciplina' => $disciplina,
-            'departamentos' => $departamentos
+            'departamentos' => $departamentos,
+            'docentes' => $docentes
         ]);
     }
 

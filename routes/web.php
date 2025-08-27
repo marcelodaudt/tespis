@@ -8,6 +8,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\EspetaculoController;
+use App\Http\Controllers\DocenteDisciplinaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,17 @@ Route::resource('docentes', DocenteController::class);
 Route::resource('departamentos', DepartamentoController::class);
 Route::resource('disciplinas', DisciplinaController::class);
 Route::resource('espetaculos', EspetaculoController::class);
+
+Route::prefix('docentes')->group(function () {
+    Route::get('/{id}/vincular-disciplinas', [DocenteDisciplinaController::class, 'create'])
+         ->name('docentes.vincular-disciplinas');
+         
+    Route::post('/{id}/vincular-disciplinas', [DocenteDisciplinaController::class, 'store'])
+         ->name('docentes.vincular-disciplinas.store');
+         
+    Route::delete('/{docenteId}/disciplinas/{disciplinaId}', [DocenteDisciplinaController::class, 'destroy'])
+         ->name('docentes.disciplinas.destroy');
+         
+    Route::get('/{id}', [DocenteDisciplinaController::class, 'show'])
+         ->name('docentes.show');
+});

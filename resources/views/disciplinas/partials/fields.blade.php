@@ -18,3 +18,25 @@
     <button type="submit" onclick="return confirm('Tem certeza?');">Apagar</button>
   </form>
 </p>
+
+<h3>Docentes vinculados a disciplina: {{ $disciplina->nome_disciplina }}</h3>
+
+@if($disciplina->docentes->count() > 0)
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Docente</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($disciplina->docentes as $docente)
+        <tr>
+          <td> {{ $docente->id }} </td>
+          <td> {{ $docente->nome_docente }} {{ $docente->sobrenome_docente }}</td>
+      @endforeach
+    </tbody>
+  </table>
+@else
+    <p>Nenhum docente vinculado.</p>
+@endif

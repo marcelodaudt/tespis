@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Disciplina extends Model
 {
@@ -19,17 +20,16 @@ class Disciplina extends Model
 	}
 
     /**
-     * relacionamento com docentes
+     * relacionamento disciplinas e docentes
      */
-    public function docentes(): HasOne
+    public function docentes(): BelongsToMany
     {
-        return $this->hasOne(Docente::class, 'id_disciplina', 'id');
+        return $this->belongsToMany(Docente::class, 'docente_disciplina', 'id_disciplina', 'id_docente')
+                    ->withTimestamps();
     }
-	
-	/**
-	public function docentes() {
-		return $this->BelongsToMany(Docente::class, 'docente_disciplina', 'id_disciplina', 'id_docente')->withTimestamps();
-		//return $this->BelongsToMany('App\Models\Docente', 'docente_disciplina', 'id_disciplina', 'id_docente')->withPivot()->withTimestamps();
-	}
-    */
+
+    public function docenteDisciplinas(): HasMany
+    {
+        return $this->hasMany(DocenteDisciplina::class);
+    }
 }
