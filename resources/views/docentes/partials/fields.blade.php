@@ -8,13 +8,14 @@
       @endforeach   
     </li>
   </ul>
-<p><a href="/docentes/{{ $docente->id }}/edit"><i class="fas fa-edit" style="font-size:36px;"></i> Editar</a></p>
-<p><a href="/docentes"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i> Voltar</a></p>
+<p><i class="fas fa-edit" style="font-size:36px;"></i><a href="/docentes/{{ $docente->id }}/edit"> Editar</a></p>
+<p><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i><a href="/docentes"> Voltar</a></p>
 <p>
   <form action="/docentes/{{ $docente->id }}" method="post">
     @csrf
     @method('delete')
-    <button type="submit" onclick="return confirm('Tem certeza?');">Excluir Docente</button>
+    <p><i class="fa fa-trash" aria-hidden="true" style="font-size:36px;"></i>&nbsp;
+    <button type="submit" onclick="return confirm('Tem certeza da exclusão do docente?');">Excluir Docente</button></p>
   </form>
 </p>
 

@@ -9,13 +9,14 @@
     <li><strong>Carga horária:</strong> {{ $disciplina->carga_horaria ?? '' }}</li>
     <li><strong>Número de alunos (vagas):</strong> {{ $disciplina->numero_alunos ?? '' }}</li>
   </ul>
-<p><a href="/disciplinas/{{ $disciplina->id }}/edit"><i class="fas fa-edit" style="font-size:36px;"></i> Editar</a></p>
-<p><a href="/disciplinas"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i> Voltar</a></p>
+<p><i class="fas fa-edit" style="font-size:36px;"></i><a href="/disciplinas/{{ $disciplina->id }}/edit"> Editar</a></p>
+<p><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i><a href="/disciplinas"> Voltar</a></p>
 <p>
   <form action="/disciplinas/{{ $disciplina->id }}" method="post">
     @csrf
     @method('delete')
-    <button type="submit" onclick="return confirm('Tem certeza?');">Apagar</button>
+    <p><i class="fa fa-trash" aria-hidden="true" style="font-size:36px;"></i>&nbsp;
+    <button type="submit" onclick="return confirm('Tem certeza da exclusão da disciplina?');">Excluir disciplina</button></p>
   </form>
 </p>
 
