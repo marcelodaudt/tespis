@@ -9,6 +9,7 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\EspetaculoController;
 use App\Http\Controllers\DocenteDisciplinaController;
+use App\Http\Controllers\PreRequisitoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +43,19 @@ Route::resource('espetaculos', EspetaculoController::class);
 Route::prefix('docentes')->group(function () {
     Route::get('/{id}/vincular-disciplinas', [DocenteDisciplinaController::class, 'create'])
          ->name('docentes.vincular-disciplinas');
-         
     Route::post('/{id}/vincular-disciplinas', [DocenteDisciplinaController::class, 'store'])
          ->name('docentes.vincular-disciplinas.store');
-         
     Route::delete('/{docenteId}/disciplinas/{disciplinaId}', [DocenteDisciplinaController::class, 'destroy'])
          ->name('docentes.disciplinas.destroy');
-         
     Route::get('/{id}', [DocenteDisciplinaController::class, 'show'])
          ->name('docentes.show');
+});
+
+Route::prefix('disciplinas')->group(function () {
+    Route::get('/{id}/pre-requisitos', [PreRequisitoController::class, 'create'])
+         ->name('disciplinas.pre-requisitos');
+    Route::post('/{id}/pre-requisitos', [PreRequisitoController::class, 'store'])
+         ->name('disciplinas.pre-requisitos.store');
+    Route::delete('/{id}/pre-requisitos/{preRequisito}', [PreRequisitoController::class, 'destroy'])
+         ->name('disciplinas.pre-requisitos.destroy');
 });

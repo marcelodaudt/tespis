@@ -41,3 +41,7 @@
 @else
     <p>Nenhum docente vinculado.</p>
 @endif
+
+<p><a href="{{ route('disciplinas.pre-requisitos', $disciplina->id) }}" class="btn btn-primary">
+ Gerenciar Pré-requistos da Disciplina
+</a></p>

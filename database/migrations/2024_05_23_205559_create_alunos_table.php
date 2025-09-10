@@ -27,11 +27,11 @@ class CreateAlunosTable extends Migration
             $table->string('email');
             $table->string('whatsapp');
             $table->string('status_utilizacao_nome_social');
-            $table->timestamps();
             $table->integer('id_turma');
             //$table->foreign('id_turma')->references('id')->on('turmas')->onDelete('set null');
             $table->integer('id_curso');
             //$table->foreign('id_curso')->references('id')->on('cursos');
+            $table->timestamps();
         });
     }
 
