@@ -21,25 +21,26 @@
     <thead>
       <tr>
         <th>Nome</th>
-        <th>Sobrenome</th>
         <th>Departamento</th>
         <th>Situação</th>
-        <th colspan="2">Opções</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       @foreach ($docentes as $docente)
         <tr>
-          <td>{{ $docente->nome_docente }}</td>
-          <td>{{ $docente->sobrenome_docente }}</td>
+          <td>{{ $docente->nome_docente }} {{ $docente->sobrenome_docente }}</td>
           <td>
             @foreach($departamentos as $departamento)
               <?php if($docente->id_departamento == $departamento->id) { echo $departamento->nome_departamento;}?>
             @endforeach 
           </td>
           <td>{{ $docente->status }}</td>
-          <td><a href="{{ route('docentes.edit', $docente->id) }}"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a></td>
-          <td><a href="{{ route('docentes.show', $docente->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
+          <td>
+            <a href="{{ route('docentes.show', $docente->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a>  
+            <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a>
+          </td>
+          
         </tr>
       @endforeach
     </tbody>

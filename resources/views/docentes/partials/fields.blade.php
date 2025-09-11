@@ -1,6 +1,5 @@
 <ul>
-    <li><strong>Nome do Professor:</strong> {{ $docente->nome_docente ?? '' }}</li>
-    <li><strong>Sobrenome do Professor:</strong> {{ $docente->sobrenome_docente ?? '' }}</li>
+    <li><strong>Nome do Docente:</strong> {{ $docente->nome_docente ?? '' }} {{ $docente->sobrenome_docente ?? '' }}</li>
     <li><strong>Situação:</strong> {{ $docente->status ?? '' }}</li>
     <li><strong>Departamento:</strong>
       @foreach($departamentos as $departamento)
@@ -8,19 +7,17 @@
       @endforeach   
     </li>
   </ul>
-<p><i class="fas fa-edit" style="font-size:36px;"></i><a href="/docentes/{{ $docente->id }}/edit"> Editar</a></p>
-<p><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i><a href="/docentes"> Voltar</a></p>
 <p>
   <form action="/docentes/{{ $docente->id }}" method="post">
+    <a href="/docentes/{{ $docente->id }}/edit" class="btn btn-primary"><i class="fas fa-edit" style="font-size:16px;"></i> Editar Docente</a>
     @csrf
     @method('delete')
-    <p><i class="fa fa-trash" aria-hidden="true" style="font-size:36px;"></i>&nbsp;
-    <button type="submit" onclick="return confirm('Tem certeza da exclusão do docente?');">Excluir Docente</button></p>
+    <button type="submit" onclick="return confirm('Tem certeza da exclusão do docente?');" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true" style="font-size:16px;"></i> Excluir Docente</button>
   </form>
 </p>
 
 <!-- docentes/show.blade.php -->
-<h3>Disciplinas do Docente: {{ $docente->nome_docente }} {{ $docente->sobrenome_docente }}</h3>
+<h4>Disciplinas Vinculadas ao Docente:</h4>
 
 @if($docente->disciplinas->count() > 0)
   <table class="table">
@@ -28,7 +25,6 @@
       <tr>
         <th>Código</th>
         <th>Disciplina</th>
-        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -36,24 +32,14 @@
         <tr>
           <td> {{ $disciplina->id }} </td>
           <td> {{ $disciplina->nome_disciplina }} </td>
-          <td>
-            <form action="{{ route('docentes.disciplinas.destroy', [$docente->id, $disciplina->id]) }}" 
-              method="POST" style="display:inline">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-sm btn-danger" 
-                onclick="return confirm('Remover este vínculo?')">
-                Remover
-              </button>
-            </form>
-          </td>
       @endforeach
     </tbody>
   </table>
 @else
     <p>Nenhuma disciplina vinculada.</p>
 @endif
+<p>
+  <a href="{{ route('docentes.vincular-disciplinas', $docente->id) }}" class="btn btn-primary">Gerenciar Disciplinas do Docente</a>
+</p>
 
-<a href="{{ route('docentes.vincular-disciplinas', $docente->id) }}" class="btn btn-primary">
-  Vincular Disciplinas
-</a>
+<p><a href="javascript:history.back()" class="btn btn-primary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar</a></p>

@@ -36,4 +36,7 @@
     </select>
 </p>
 
-<p><button type="submit">Salvar</button></p>
+<p>
+    <a href="javascript:history.back()" class="btn btn-primary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar</a>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true" style="font-size:16px;"></i> Salvar</button>
+</p>
