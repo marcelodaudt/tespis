@@ -9,18 +9,18 @@
     <li><strong>Carga horária:</strong> {{ $disciplina->carga_horaria ?? '' }}</li>
     <li><strong>Número de alunos (vagas):</strong> {{ $disciplina->numero_alunos ?? '' }}</li>
   </ul>
-<p><i class="fas fa-edit" style="font-size:36px;"></i><a href="/disciplinas/{{ $disciplina->id }}/edit"> Editar</a></p>
-<p><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:36px;"></i><a href="/disciplinas"> Voltar</a></p>
 <p>
   <form action="/disciplinas/{{ $disciplina->id }}" method="post">
+    <a href="/disciplinas/{{ $disciplina->id }}/edit" class="btn btn-primary"><i class="fas fa-edit" style="font-size:16px;"></i> Editar Disciplina</a>
     @csrf
     @method('delete')
-    <p><i class="fa fa-trash" aria-hidden="true" style="font-size:36px;"></i>&nbsp;
-    <button type="submit" onclick="return confirm('Tem certeza da exclusão da disciplina?');">Excluir disciplina</button></p>
+    <button type="submit" onclick="return confirm('Tem certeza da exclusão da disciplina?');" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true" style="font-size:16px;"></i>Excluir disciplina</button></p>
   </form>
 </p>
 
-<h3>Docentes vinculados a disciplina: {{ $disciplina->nome_disciplina }}</h3>
+<hr>
+
+<h4>Docentes Vinculados a Disciplina:</h4>
 
 @if($disciplina->docentes->count() > 0)
   <table class="table">
@@ -42,6 +42,31 @@
     <p>Nenhum docente vinculado.</p>
 @endif
 
-<p><a href="{{ route('disciplinas.pre-requisitos', $disciplina->id) }}" class="btn btn-primary">
- Gerenciar Pré-requistos da Disciplina
-</a></p>
+<hr>
+<hr>
+
+<h4>Pré-requisitos Atuais da Disciplina:</h4>
+
+@if($disciplina->preRequisitos->count() > 0)
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Disciplina</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($disciplina->preRequisitos as $preRequisito)
+        <tr>
+          <td> {{ $preRequisito->id }} </td>
+          <td> {{ $preRequisito->nome_disciplina }}</td>
+      @endforeach
+    </tbody>
+  </table>
+@else
+  <p class="text-muted">Nenhum pré-requisito definido para esta disciplina.</p>
+@endif
+
+<p><a href="{{ route('disciplinas.pre-requisitos', $disciplina->id) }}" class="btn btn-primary"><i class="fa fa-cog" aria-hidden="true" style="font-size:16px;"></i> Gerenciar Pré-requistos da Disciplina</a></p>
+<hr>
+<p><a href="/disciplinas" class="btn btn-primary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar para Lista de Disciplinas</a></p>

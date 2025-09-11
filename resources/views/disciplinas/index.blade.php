@@ -22,23 +22,23 @@
     <thead>
       <tr>
         <th>Nome</th>
-        <th>Descrição</th>
         <th>Departamento</th>
-        <th colspan="2">Opções</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       @foreach ($disciplinas as $disciplina)
         <tr>
           <td>{{ $disciplina->nome_disciplina }}</td>
-          <td>{{ $disciplina->descricao }}</td>
           <td>
             @foreach($departamentos as $departamento)
               <?php if($disciplina->id_departamento == $departamento->id) { echo $departamento->nome_departamento;}?>
             @endforeach
           </td>
-          <td><a href="{{ route('disciplinas.edit', $disciplina->id) }}"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a></td>
-          <td><a href="{{ route('disciplinas.show', $disciplina->id) }}"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a></td>
+          <td>
+            <a href="{{ route('disciplinas.show', $disciplina->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye" style="font-size:16px;"></i> Exibir</a>
+            <a href="{{ route('disciplinas.edit', $disciplina->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit" style="font-size:16px;"></i> Editar</a>
+          </td>
         </tr>
       @endforeach
     </tbody>

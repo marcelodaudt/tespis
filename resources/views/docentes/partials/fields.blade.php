@@ -16,7 +16,7 @@
   </form>
 </p>
 
-<!-- docentes/show.blade.php -->
+<hr>
 <h4>Disciplinas Vinculadas ao Docente:</h4>
 
 @if($docente->disciplinas->count() > 0)
@@ -39,7 +39,7 @@
     <p>Nenhuma disciplina vinculada.</p>
 @endif
 <p>
-  <a href="{{ route('docentes.vincular-disciplinas', $docente->id) }}" class="btn btn-primary">Gerenciar Disciplinas do Docente</a>
+  <a href="{{ route('docentes.vincular-disciplinas', $docente->id) }}" class="btn btn-primary"><i class="fa fa-cog" aria-hidden="true" style="font-size:16px;"></i> Gerenciar Disciplinas do Docente</a>
 </p>
-
-<p><a href="javascript:history.back()" class="btn btn-primary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar</a></p>
+<hr>
+<p><a href="/docentes" class="btn btn-primary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar para Lista de Docentes</a></p>

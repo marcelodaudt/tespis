@@ -36,14 +36,10 @@
                                             @foreach($docente->disciplinas as $disciplina)
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                                     {{ $disciplina->nome_disciplina }} ({{ $disciplina->id }})
-                                                    <form action="{{ route('docentes.disciplinas.destroy', [$docente->id, $disciplina->id]) }}" 
-                                                          method="POST" style="display:inline">
+                                                    <form action="{{ route('docentes.disciplinas.destroy', [$docente->id, $disciplina->id]) }}" method="POST" style="display:inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger" 
-                                                                onclick="return confirm('Remover este vinculo?')">
-                                                            ✕ Remover
-                                                        </button>
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remover este vinculo?')"><i class="fas fa-trash"></i> Remover</button>
                                                     </form>
                                                 </li>
                                             @endforeach
@@ -76,9 +72,7 @@
                                             </select>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary mt-3">
-                                            Adicionar Vinculo
-                                        </button>
+                                        <button type="submit" class="btn btn-primary mt-3"><i class="fas fa-plus"></i> Adicionar Vinculo</button>
                                     </form>
                                 </div>
                             </div>
@@ -86,9 +80,7 @@
                     </div>
 
                     <div class="mt-3">
-                        <a href="{{ route('docentes.index') }}" class="btn btn-secondary">
-                            ← Voltar para Lista de Docentes
-                        </a>
+                        <p><a href="/docentes/{{ $docente->id }}" class="btn btn-secondary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar</a></p>
                     </div>
                 </div>
             </div>

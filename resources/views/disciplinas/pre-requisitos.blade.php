@@ -40,10 +40,7 @@
                                                           method="POST" style="display:inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger" 
-                                                                onclick="return confirm('Remover este pré-requisito?')">
-                                                            ✕ Remover
-                                                        </button>
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remover este pré-requisito?')"><i class="fas fa-trash"></i> Remover</button>
                                                     </form>
                                                 </li>
                                             @endforeach
@@ -76,9 +73,7 @@
                                             </select>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary mt-3">
-                                            Adicionar Pré-requisito
-                                        </button>
+                                        <button type="submit" class="btn btn-primary mt-3"><i class="fas fa-plus"></i> Adicionar Pré-requisito</button>
                                     </form>
                                 </div>
                             </div>
@@ -110,9 +105,7 @@
                     </div>
 
                     <div class="mt-3">
-                        <a href="{{ route('disciplinas.index') }}" class="btn btn-secondary">
-                            ← Voltar para Lista de Disciplinas
-                        </a>
+                        <p><a href="/disciplinas/{{ $disciplina->id }}" class="btn btn-secondary"><i class="fa fa-chevron-circle-left" aria-hidden="true" style="font-size:16px;"></i> Voltar</a></p>
                     </div>
                 </div>
             </div>
