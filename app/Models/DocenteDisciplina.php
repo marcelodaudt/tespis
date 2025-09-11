@@ -12,10 +12,7 @@ class DocenteDisciplina extends Model
 
     protected $table = 'docente_disciplina';
     
-    protected $fillable = [
-        'id_docente', 
-        'id_disciplina'
-    ];
+    protected $fillable = ['id_docente', 'id_disciplina'];
 
     public function docente(): BelongsTo
     {

@@ -40,5 +40,4 @@ class Docente extends Model
     {
         return $this->hasMany(DocenteDisciplina::class);
     }
-
 }

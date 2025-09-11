@@ -25,7 +25,8 @@ class Disciplina extends Model
      */
     public function docentes(): BelongsToMany
     {
-        return $this->belongsToMany(Docente::class, 'docente_disciplina', 'id_disciplina', 'id_docente')
+        return $this->belongsToMany(Docente::class, 'docente_disciplina',
+                    'id_disciplina', 'id_docente')
                     ->withTimestamps();
     }
 

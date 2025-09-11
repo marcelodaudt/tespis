@@ -15,9 +15,15 @@ class DocenteDisciplinaController extends Controller
         $docente = Docente::findOrFail($docenteId);
         $disciplinas = Disciplina::orderBy('nome_disciplina')->get();
 
+        // Disciplinas disponíveis para serem vinculadas, excluindo ela mesma da lista
+        $disciplinasDisponiveis = Disciplina::whereNotIn('id', $docente->disciplinas->pluck('id'))
+            ->orderBy('nome_disciplina')
+            ->get();
+
         return view('docentes.vincular-disciplinas')->with([
             'docente' => $docente,
-            'disciplinas' => $disciplinas
+            'disciplinas' => $disciplinas,
+            'disciplinasDisponiveis' => $disciplinasDisponiveis
         ]);
     }
 
@@ -29,7 +35,7 @@ class DocenteDisciplinaController extends Controller
         $docente_disciplina->id_docente =  $docente->id;
         $docente_disciplina->id_disciplina = $request->id_disciplina;
         $docente_disciplina->save();
-        return redirect("/docentes/{$docente->id}");
+        return redirect()->back();
     }
 
     // Método para mostrar disciplinas do docente
